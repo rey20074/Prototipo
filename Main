@@ -14,10 +14,10 @@ public class MainAtencion {
 	   
 	   while(!salir){ 
            
-		   System.out.println("");
-		   System.out.println("1. Realizar una llamada");
-           System.out.println("2. Ver listado de operadores");
-           System.out.println("3. Salir");
+		System.out.println("");
+		System.out.println("1. Realizar una llamada");
+           	System.out.println("2. Ver listado de operadores");
+           	System.out.println("3. Salir");
 		  
 
            opcion = Integer.parseInt(JOptionPane.showInputDialog("Seleccione la opcion que desee"));
