@@ -1,9 +1,44 @@
 // menu principal
 
+import java.util.Scanner;
 import javax.swing.JOptionPane;
-    
-public class Main {
+ 
+public class MainAtencion {
+ 
+     
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null, "Hello World");
-    }
+         
+       Scanner sn = new Scanner(System.in);
+	   int opcion; //Guardaremos la opcion del usuario
+	   boolean salir = false;
+	   
+	   while(!salir){ 
+           
+		   System.out.println("");
+		   System.out.println("1. Realizar una llamada");
+           System.out.println("2. Ver listado de operadores");
+           System.out.println("3. Salir");
+		  
+
+           opcion = Integer.parseInt(JOptionPane.showInputDialog("Seleccione la opcion que desee"));
+            
+           switch(opcion){
+                case 1:
+					System.out.println("Has seleccionado la opcion 1 \n");
+					break;
+			   case 2:
+                   System.out.println("Has seleccionado la opcion 2 \n");
+				   break;
+               case 3:
+				   salir=true;
+                   break;
+                default:
+                  System.out.println("Solo números entre 1 y 3");
+           }
+            
+       }
+        
+		
+	}
+     
 }
