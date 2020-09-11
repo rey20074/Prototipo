@@ -1,0 +1,70 @@
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+public class AtencionMedica {
+
+    public void Imprimir(){
+
+        Scanner sn = new Scanner(System.in);
+        int opcions; //Guardaremos la opcion del usuario
+        boolean salir = false;
+
+        while(!salir){
+
+            System.out.println("------------Ha seleccionado la opcion de Atencion Medica ------- ");
+            System.out.println("Para poder ayudarlo por favor seleccione el sintoma que usted presenta para brindarle un breve diagnostico");
+            System.out.println("");
+            opcions = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica" ));
+
+
+            switch(opcions){
+                case 1:
+                    System.out.println("El dolor de garganta causado por una infección viral generalmente dura de cinco a siete días y no requiere tratamiento médico. \n");
+                    System.out.println("Pero si desea aliviar el dolor puede tomar paracetamol u otros analgésicos suaves\n");
+                    salir=true;
+                    break;
+                case 2:
+                    System.out.println("Los síntomas de las infecciones del oído generalmente mejoran durante los primeros dos días y la mayoría de las infecciones desaparecen solas en una o dos semanas sin tratamiento alguno.\n");
+                    System.out.println("Si desea aliviar el dolor se recomienda el uso de paracetamol de venta libre o ibuprofeno.\n");
+                    System.out.println("Si el dolor persiste luego de dos semanas se le recomienda visitar un medico.\n");
+                    salir=true;
+                    break;
+                case 3:
+                    System.out.println("Si el dolor es mucho, se recomienda que se realize un examen de orina para ver su estado. \n");
+                    System.out.println("Generalmente, los antibióticos son el tratamiento de primera línea para las infecciones de las vías urinarias. Los medicamentos que te receten y el tiempo de uso dependen de tu estado de salud y del tipo de bacterias que se encuentren en la orina.\n");
+                    salir=true;
+                    break;
+                case 4:
+                    System.out.println("Si unicamente tiene goteo nasal y congestion puede ser que unicamente se trate de un resfriado comun. \n");
+                    System.out.println("No hay cura para el resfriado común. Los antibióticos no son útiles contra los virus del resfriado y no deben utilizarse a menos que haya una infección bacteriana. El tratamiento está dirigido a aliviar los signos y síntomas. \n");
+                    salir=true;
+                    break;
+                case 5:
+                    System.out.println("El tratamiento de la tos depende del tipo de esta y de su funcion, ya que puede ser sintoma de una enfermedad o un mecanismo de reaccion. \n");
+                    System.out.println("Si la tos no es tan grave se recomienda no beber ningun tipo de medicamento, en caso de que molesta mucho y sea tos seca, se deben usar Antitusivos que eliminan la tos y Mucolíticos y Expectorantes que hacen que la mucosidad se elimine más fácilmente.  \n");
+                    System.out.println("Si usted aparte de poseer este sintoma se siente cansado y con fiebre se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
+                    salir=true;
+                    break;
+                case 6:
+                    System.out.println("Están disponibles una variedad de medicamentos para reducir el dolor de cabeza, tanto con o sin receta. \n");
+                    System.out.println("Para aliviar el dolor puede tomar aspirinas, ibuprofeno o naproxeno. \n");
+                    salir=true;
+                    break;
+                case 7:
+                    System.out.println("En el caso de fiebre baja, no es muy recomendado tomar un tratamiento para bajar la temperatura coroporal. \n");
+                    System.out.println("En caso de fiebre alta se recomienda toma paracetamol o ibuprofeno. \n");
+                    System.out.println("Si usted aparte de poseer este sintoma se siente cansado y con tos se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
+                    salir=true;
+                    break;
+                case 8:
+                    salir=true;
+                    break;
+                default:
+                    System.out.println("Solo números entre 1 y 8");
+            }
+
+        }
+
+    }
+
+}
