@@ -1,0 +1,35 @@
+public class Item {
+    private String nombre;
+    private int cantidadActual;
+    private int cantidadFalta;
+    public Item()
+    {
+
+    }
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public String getNombre(){
+        return this.nombre;
+    }
+
+    public void setCantidadActual(int cantidadActual){
+        this.cantidadActual = cantidadActual;
+    }
+
+    public int getCantidadActual(){
+        return this.cantidadActual;
+    }
+
+
+    public void setCantidadFalta(int cantidadFalta){
+        this.cantidadFalta = cantidadFalta;
+    }
+
+    public int getCantidadFalta(){
+        return this.cantidadFalta;
+    }
+
+    
+}
