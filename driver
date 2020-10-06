@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.*;
 
+
 public class driver {
    public static void main( String[] args) {
        Scanner scan = new Scanner(System.in);
@@ -103,7 +104,13 @@ public class driver {
            String contrat = JOptionPane.showInputDialog(null, "Constraseña que desee: ");
            usuarios.add(usuario);
            contrasenas.add(contrat);
-           
+           String [] temp = {"usuario", "contrat"};
+           //Agregar al archivo csv 
+           String archCSV = "archivos/usuarios.csv";
+           CSVWriter writer = new CSVWriter(new FileWriter(archCSV));
+
+           writer.writeNext(temp);
+           writer.close();
        }
            try
            {
