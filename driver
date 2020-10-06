@@ -2,8 +2,8 @@
 Página principal para la aplicación de hospitales
 Andrea Lam, 20102
 Mariano Reyes. 20074
-Ultima Modificación:
-05/10/2020
+Ultima Modificación: 
+06/10/2020
 
 */
 
@@ -16,12 +16,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collection;
 import java.util.ArrayList;
-import javax.swing.*;
-import java.awt.event.*;
+import javax.swing.*;    
+import java.awt.event.*;   
 
 
-public class driver {
-   public static void main( String[] args) {
+public class Main {
+
+    public static void main( String[] args) {
        Scanner scan = new Scanner(System.in);
        int contador=0;
        boolean bandera=false,bandera2=false;
@@ -29,12 +30,14 @@ public class driver {
        ArrayList<String> usuarios = new ArrayList<String>();
        ArrayList<String> contrasenas = new ArrayList<String>();
 
+       vista v=new vista();
 
-       JOptionPane.showMessageDialog(null,"\n\n Bienvenido porfavor ingrese su nombre de usuario y contraseña");
-       String correo = JOptionPane.showInputDialog(null, "Usuario");
+       v.bienvenida();
+       String correo = v.datos("Usuario");
        System.out.println(correo);
-       String contra = JOptionPane.showInputDialog(null, "Contraseña");
+       String contra = v.datos("Contraseña");
        System.out.println(contra);
+
        int opcion=0;
        int opcionhosp=0;
 
@@ -83,127 +86,89 @@ public class driver {
        }
        if(bandera==true)//existe el usuario
        {
-           JOptionPane.showMessageDialog(null, "Usuario si existe");
+         v.mensaje("Usuario si existe");
        }
        if(bandera==false)// crear usuario
        {
-           JOptionPane.showMessageDialog(null, "Usuario no existente, procediendo a registrar\n");
-           String usuario = JOptionPane.showInputDialog(null, "Usuario con el que se desea ingresar: ");
+           v.mensaje("Usuario no existente, procediendo a registrar\n");
+           String usuario = v.datos("Usuario con el que se desea ingresar: ");
            //verifica si el usuario ingresado existe o no
            for (int i = 0; i < usuarios.size(); i++) {
                while (usuarios.get(i).equals(usuario)) {
                    bandera2 = true; //ya existe
-                   JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
-                   usuario = JOptionPane.showInputDialog(null, "Correo con el que se desea ingresar: ");
+                   v.mensaje("Usuario existente, porfavor ingrese otro correo");
+                   //JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
+                   usuario = v.datos("Correo con el que se desea ingresar: ");
                    int a = 0;
 
 
                }
            }
 
-           String contrat = JOptionPane.showInputDialog(null, "Constraseña que desee: ");
+           String contrat = v.datos("Constraseña que desee: ");
            usuarios.add(usuario);
            contrasenas.add(contrat);
-           String [] temp = {"usuario", "contrat"};
-           //Agregar al archivo csv 
-           String archCSV = "archivos/usuarios.csv";
-           CSVWriter writer = new CSVWriter(new FileWriter(archCSV));
+           
+        }
 
-           writer.writeNext(temp);
-           writer.close();
-       }
-           try
-           {
+        
 
 
-               while(opcion!=4){
-                   opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"¿A donde desea ingresar?\n1. Hospitales \n2. Atención Medica \n3. Materiales\n4. Salir"));
-                   if(opcion==1)//Hospitales
-                   {
-                       Hospitales hosp=new Hospitales();
-                       //leer archivo lee el csv y almacena las columnas en arraylist
-                       hosp.leerArchivo();
-                       //la conversion crea arraylists Ints de las Strings que son de numeros
-                       hosp.conversionInt();
+        while(opcion!=4){
+            opcion = v.opciones("¿A donde desea ingresar?\n1. Hospitales \n2. Atención Medica \n3. Materiales\n4. Salir",4);
+            if(opcion==1)//Hospitales
+            {
+                Hospitales hosp=new Hospitales();
+                //leer archivo lee el csv y almacena las columnas en arraylist
+                hosp.leerArchivo();
+                //la conversion crea arraylists Ints de las Strings que son de numeros
+                hosp.conversionInt();
 
-                       while(opcionhosp != 3){
-                           opcionhosp = Integer.parseInt(JOptionPane.showInputDialog(null,"¿A donde desea ingresar?\n1. Mostrar toda la informacion necesaria \n2. Recomendar Hospital \n3. Regresar"));
-                           if(opcionhosp==1){
-                               //mostrartodo muestra esas variables impresas
-                               hosp.mostrarTodo();
-                           }
-                           else if(opcionhosp==2){
-                               //este metodo es donde se muestra el mejor hospital por el numero de camas disponibles y el peor tambien
-                               hosp.cola();
-                           }
-                           else if(opcionhosp==3){
-                               JOptionPane.showMessageDialog(null, "Eligio regresar...");
-                           }
-                           else{
-                               JOptionPane.showMessageDialog(null, "Porfavor ingrese solo una opcion del 1 al 3");
-                           }
-                       }
+                while(opcionhosp != 3){
+                    opcionhosp =v.opciones("¿A donde desea ingresar?\n1. Mostrar toda la informacion necesaria \n2. Recomendar Hospital \n3. Regresar",3);
+                    if(opcionhosp==1){
+                        //mostrartodo muestra esas variables impresas
+                        hosp.mostrarTodo();
+                    }
+                    else if(opcionhosp==2){
+                        //este metodo es donde se muestra el mejor hospital por el numero de camas disponibles y el peor tambien
+                        hosp.cola();
+                    }
+                    else if(opcionhosp==3){
+                      v.mensaje("Eligio regresar...");
+                    }
+                    else{
+                      v.mensaje("Porfavor ingrese solo una opcion del 1 al 3");
+                    }
+                }
 
-                       //en este metodo se aleatorizan las camas ocupadas de cada hospital sin pasasrse del limite de camas totales
-                       hosp.camasAleatorias();
-                   }
-                   else if(opcion==2)//Atención Medica
-                   {
-                       //Instanciamos la clase Atencion Medica
-                       AtencionMedica at = new AtencionMedica();
-                       //Mandamos a llamar a ala clase Atención Medica
-                       at.Imprimir();
+                //en este metodo se aleatorizan las camas ocupadas de cada hospital sin pasasrse del limite de camas totales
+                hosp.camasAleatorias();
+            }
+            else if(opcion==2)//Atención Medica
+            {
+              //Instanciamos la clase Atencion Medica
+              AtencionMedica at = new AtencionMedica();
+              //Mandamos a llamar a ala clase Atención Medica
+              at.Imprimir();
 
-                   }else if(opcion==3)//Materiales
-                   {
-                       ArrayList<Item> item = new ArrayList<Item>();
-                       int opcionm = 1;
-                       int contadorm = 1;
+            }else if(opcion==3)//Materiales
+            {
+                
+                }
 
-                       var scanm = new Scanner(System.in);
+                materiales m = new materiales();
 
-                       while (opcionm == 1) {
-                           Item detalle = new Item();
-                           ArrayList<Item> listado = new ArrayList<Item>();
-                           System.out.println("Ingres el nombre del producto");
-                           detalle.setNombre(scanm.next());
-                           System.out.println("Ingres la cantidad actual");
-                           detalle.setCantidadActual(scanm.nextInt());
-                           System.out.println("Ingres la cantidad que falta");
-                           detalle.setCantidadFalta(scanm.nextInt());
+                m.crearExcel(item);
+            }
+            else if(opcion==4)//Salir
+            {
+                v.mensaje("Pase buen día.");
+            }
+            else
+            {
+              v.mensaje("Porfavor ingrese solo una opcion del 1 al 4");
+            }
+      }
 
-                           System.out.println("Desea seguir agregando productos");
-                           System.out.println("Ingrese 1 si desea continuar, 0 para terminar de escribir");
-                           opcionm = scanm.nextInt();
-
-                           listado.add(detalle);
-                           item.addAll(0, listado);
-                           contadorm++;
-
-                       }
-
-                       materiales m = new materiales();
-
-                       m.crearExcel(item);
-                   }
-                   else if(opcion==4)//Salir
-                   {
-                       JOptionPane.showMessageDialog(null, "Pase buen día.");
-                   }
-                   else
-                   {
-                       JOptionPane.showMessageDialog(null, "Porfavor ingrese solo una opcion del 1 al 4");
-                   }
-               }
-
-
-           }catch(Exception e) {
-               //VER LA EXCEPCION CREO
-               System.out.println(e);
-               JOptionPane.showMessageDialog(null, "Porfavor ingrese solo una opcion del 1 al 3 o caracteres validos");
-               opcion = Integer.parseInt(JOptionPane.showInputDialog(null,"¿A donde desea ingresar? 1.Hospitales 2. Atención Medica 3. Materiales 4.Atención Medica"));
-           }
-
-       }
-   }
-
+}
