@@ -103,6 +103,7 @@ public class driver {
            String contrat = JOptionPane.showInputDialog(null, "Constraseña que desee: ");
            usuarios.add(usuario);
            contrasenas.add(contrat);
+           
        }
            try
            {
