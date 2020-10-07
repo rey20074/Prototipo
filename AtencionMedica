@@ -27,7 +27,7 @@ public class AtencionMedica {
 		   
 		    try{
 			   
-			   opcions = v.opciones("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica", 8);
+			   opcions = v.datos("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica", 8);
 			   
 				
 			   switch(opcions){
@@ -56,7 +56,7 @@ public class AtencionMedica {
 				   case 2:
 						try {
  
-							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
