@@ -1,35 +1,42 @@
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+try {
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-public class materiales {
-
-    public materiales()
-    {
-
-    }
-    public void crearExcel(ArrayList<Item> item) throws IOException {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet();
-        sheet.createRow(0);
-        sheet.getRow(0).createCell(0).setCellValue("Material");
-        sheet.getRow(0).createCell(1).setCellValue("CAntidad Actual");
-        sheet.getRow(0).createCell(2).setCellValue("Cantidad Que Falta");
-
-        for (int i = 0; i < item.size(); i++) {
-            int temp = i + 1;
-            sheet.createRow(temp);
-            sheet.getRow(temp).createCell(0).setCellValue(item.get(i).getNombre());
-            sheet.getRow(temp).createCell(1).setCellValue(item.get(i).getCantidadActual());
-            sheet.getRow(temp).createCell(2).setCellValue(item.get(i).getCantidadFalta());
-        }
         String desktopPath = System.getProperty("user.home") + "/Desktop";
-        File file = new File(desktopPath+"\\Materiales.xls");
-        workbook.write(file);
-        workbook.close();
-        
+        File file = new File(desktopPath + "\\Materiales.xls");
+        if (!file.exists()) {
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet sheet = workbook.createSheet();
+            sheet.createRow(0);
+            sheet.getRow(0).createCell(0).setCellValue("Material");
+            sheet.getRow(0).createCell(1).setCellValue("Cantidad Actual");
+            sheet.getRow(0).createCell(2).setCellValue("Cantidad Que Falta");
+            for (int i = 0; i < item.size(); i++) {
+                int temp = i + 1;
+                sheet.createRow(temp);
+                sheet.getRow(temp).createCell(0).setCellValue(item.get(i).getNombre());
+                sheet.getRow(temp).createCell(1).setCellValue(item.get(i).getCantidadActual());
+                sheet.getRow(temp).createCell(2).setCellValue(item.get(i).getCantidadFalta());
+            }
+            workbook.write(file);
+            workbook.close();
+            System.out.println("Se ha creado el archivo con la información ingresada");
+        } else if (file.exists()) {
+            boolean igual = false;
+            FileInputStream inputStream = new FileInputStream(new File(desktopPath + "\\Materiales.xls"));
+            Workbook workbook = WorkbookFactory.create(inputStream);
+            Sheet sheet = workbook.getSheetAt(0);
+            String cellValue = sheet.getRow(0).getCell(0).getStringCellValue();
+            
+            int rowCount = sheet.getLastRowNum();
+            Object[][] bookData = {};
+            FileOutputStream outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
+
+//aqui va esteban
+}
+
+          catch (Exception e) {
+             System.out.println("Porfavor ingrese la información que le piden, vuelva a intentar");
+         }
+
+
     }
 }
