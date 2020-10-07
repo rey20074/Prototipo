@@ -29,8 +29,65 @@ try {
             int rowCount = sheet.getLastRowNum();
             Object[][] bookData = {};
             FileOutputStream outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
+         }
+           
+        for (int i = 0; i < item.size(); i++) {
 
-//aqui va esteban
+                for (int j = 0; j <= rowCount; j++) {
+                    cellValue = sheet.getRow(j).getCell(0).getStringCellValue();
+                    if (cellValue.equals(item.get(i).getNombre())) {
+                        igual = true;
+                        break;
+                    } else {
+                        igual = false;
+                    }
+                }
+
+                bookData = new Object[][] {
+                        { item.get(i).getNombre(), item.get(i).getCantidadActual(), item.get(i).getCantidadFalta() }, };
+                if (!igual) {
+                    for (Object[] aBook : bookData) {
+                        Row row = sheet.createRow(++rowCount);
+
+                        int columnCount = 0;
+
+                        Cell cell = row.createCell(columnCount);
+                        // cell.setCellValue(rowCount);
+
+                        for (Object field : aBook) {
+                            cell = row.createCell(++columnCount - 1);
+                            if (field instanceof String) {
+                                cell.setCellValue((String) field);
+                            } else if (field instanceof Integer) {
+                                cell.setCellValue((Integer) field);
+                            }
+                        }
+
+                    }
+                    System.out.println("Se ha añadido la información al archivo existente");
+                    /*
+                     * inputStream.close();
+                     *
+                     * //outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
+                     * workbook.write(outputStream);
+                     * System.out.println("Se ha añadido la información al archivo existente");
+                     * workbook.close(); outputStream.close();
+                     */
+                } else {
+                    //inputStream.close();
+                    System.out.println("Lo sentimos pero ese material ya fue añadido al documento");
+                    //outputStream.close();
+                }
+
+            }
+
+            inputStream.close();
+
+            // outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
+            workbook.write(outputStream);
+
+            workbook.close();
+            outputStream.close();
 }
 
           catch (Exception e) {
