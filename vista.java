@@ -18,7 +18,7 @@ public class vista{
   }
 
   public String datos(String a){
-    String dato = JOptionPane.showMessageDialog(null, a);
+    String dato = JOptionPane.showInputDialog(null, a);
     return dato;
   }  
 
