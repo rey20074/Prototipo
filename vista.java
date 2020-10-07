@@ -1,4 +1,6 @@
 /*Clase que implementara la vista del programa
+Andrea Lam, 20102
+Mariano Reyes, 
 Ultima modificacion 6 de Junio
 */
 
@@ -16,7 +18,7 @@ public class vista{
   }
 
   public String datos(String a){
-    string dato = JOptionPane.showMessageDialog(null, a);
+    String dato = JOptionPane.showMessageDialog(null, a);
     return dato;
   }  
 
