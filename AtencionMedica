@@ -1,3 +1,10 @@
+/*
+Clase Atención Médica
+Ultima Modificación: 
+06/10/2020
+/*
+
+
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -8,182 +15,181 @@ public class AtencionMedica {
 	
 
 	   Scanner sn = new Scanner(System.in);
+           vista v=new vista();
 	   int opcions; //Guardaremos la opcion del usuario
 	   boolean salir = false;
 	   int pregunta;
 	   
 	   while(!salir){ 
            
-		   System.out.println("------------Ha seleccionado la opcion de Atencion Medica ------- ");
-		   System.out.println("Para poder ayudarlo por favor seleccione el sintoma que usted presenta para brindarle un breve diagnostico");
-		   System.out.println("");
+		   v.mensaje("------------Ha seleccionado la opcion de Atencion Medica ------- ");
+		   v.mensaje("Para poder ayudarlo por favor seleccione el sintoma que usted presenta para brindarle un breve diagnostico\n");
 		   
 		    try{
 			   
-			   opcions = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica" ));
+			   opcions = v.opciones("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica", 8);
 			   
 				
 			   switch(opcions){
 					case 1:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.opciones("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n?", 2);						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("Entre las enfermedades virales que causan dolor de garganta se incluyen las siguientes:Resfrío común, Gripe (influenza), Mononucleosis, Sarampión, Varicela, Crup: una enfermedad común de la niñez caracterizada por una tos áspera y seca");
+									v.mensaje("\nEntre las enfermedades virales que causan dolor de garganta se incluyen las siguientes:Resfrío común, Gripe (influenza), Mononucleosis, Sarampión, Varicela, Crup: una enfermedad común de la niñez caracterizada por una tos áspera y seca");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("El dolor de garganta causado por una infección viral generalmente dura de cinco a siete dias y no requiere tratamiento médico. \n");
-									System.out.println("Pero si desea aliviar el dolor puede tomar paracetamol u otros analgésicos suaves\n");
+									
+									v.mensaje("\nEl dolor de garganta causado por una infección viral generalmente dura de cinco a siete dias y no requiere tratamiento médico. \n");
+									v.mensaje("Pero si desea aliviar el dolor puede tomar paracetamol u otros analgésicos suaves\n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 						break;
 				   case 2:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("Las causas del dolor de oído pueden abarcar: Artritis de la mandibula, Infeccion aguda del oido, Infeccion cronica del oído, Lesión en el oído por cambios de presión.");
+									
+									v.mensaje("\nLas causas del dolor de oído pueden abarcar: Artritis de la mandibula, Infeccion aguda del oido, Infeccion cronica del oído, Lesión en el oído por cambios de presión.");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("Los síntomas de las infecciones del oído generalmente mejoran durante los primeros dos días y la mayoría de las infecciones desaparecen solas en una o dos semanas sin tratamiento alguno.\n");
-									System.out.println("Si desea aliviar el dolor se recomienda el uso de paracetamol de venta libre o ibuprofeno.\n");
-									System.out.println("Si el dolor persiste luego de dos semanas se le recomienda visitar un medico.\n");
+									
+									v.mensaje("\nLos síntomas de las infecciones del oído generalmente mejoran durante los primeros dos días y la mayoría de las infecciones desaparecen solas en una o dos semanas sin tratamiento alguno.\n");
+									v.mensaje("Si desea aliviar el dolor se recomienda el uso de paracetamol de venta libre o ibuprofeno.\n");
+									v.mensaje("Si el dolor persiste luego de dos semanas se le recomienda visitar un medico.\n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
 				   case 3:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("La causa del dolor en las vias urinarias puede deberse a una infección en: Riñones, Vejiga o Uretra");
+									
+									v.mensaje("\nLa causa del dolor en las vias urinarias puede deberse a una infección en: Riñones, Vejiga o Uretra");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("Si el dolor es mucho, se recomienda que se realize un examen de orina para ver su estado. \n");
-									System.out.println("Generalmente, los antibióticos son el tratamiento de primera línea para las infecciones de las vías urinarias. Los medicamentos que te receten y el tiempo de uso dependen de tu estado de salud y del tipo de bacterias que se encuentren en la orina.\n");
+									
+									v.mensaje("\nSi el dolor es mucho, se recomienda que se realize un examen de orina para ver su estado. \n");
+									v.mensaje("Generalmente, los antibióticos son el tratamiento de primera línea para las infecciones de las vías urinarias. Los medicamentos que te receten y el tiempo de uso dependen de tu estado de salud y del tipo de bacterias que se encuentren en la orina.\n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
 				   case 4:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("La congestion puede ser causada por: Rinitis alérgica u otras alergias, uso excesivo de algunas gotas o aerosoles nasales comprados sin una receta por más de 3 dias, Pólipos nasales, masas de tejido inflamado similares a sacos que recubren la nariz o los senos paranasales.");
+									
+									v.mensaje("\nLa congestion puede ser causada por: Rinitis alérgica u otras alergias, uso excesivo de algunas gotas o aerosoles nasales comprados sin una receta por más de 3 dias, Pólipos nasales, masas de tejido inflamado similares a sacos que recubren la nariz o los senos paranasales.");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("Si unicamente tiene goteo nasal y congestion puede ser que unicamente se trate de un resfriado comun. \n");
-									System.out.println("No hay cura para el resfriado común. Los antibióticos no son útiles contra los virus del resfriado y no deben utilizarse a menos que haya una infección bacteriana. El tratamiento está dirigido a aliviar los signos y síntomas. \n");
+									
+									v.mensaje("\nSi unicamente tiene goteo nasal y congestion puede ser que unicamente se trate de un resfriado comun. \n");
+									v.mensaje("No hay cura para el resfriado común. Los antibióticos no son útiles contra los virus del resfriado y no deben utilizarse a menos que haya una infección bacteriana. El tratamiento está dirigido a aliviar los signos y síntomas. \n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
 				   case 5:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("Las causas comunes de la tos son: Alergias que involucran la nariz y los senos paranasales, Asma y EPOC (enfisema o bronquitis crónica), el resfriado común y la gripe, infecciones pulmonares como neumonía o bronquitis aguda, sinusitis con goteo retronasal.");
+									
+									v.mensaje("\nLas causas comunes de la tos son: Alergias que involucran la nariz y los senos paranasales, Asma y EPOC (enfisema o bronquitis crónica), el resfriado común y la gripe, infecciones pulmonares como neumonía o bronquitis aguda, sinusitis con goteo retronasal.");
 								case 2:
-									System.out.println("");
-									System.out.println("El tratamiento de la tos depende del tipo de esta y de su funcion, ya que puede ser sintoma de una enfermedad o un mecanismo de reaccion. \n");
-									System.out.println("Si la tos no es tan grave se recomienda no beber ningun tipo de medicamento, en caso de que molesta mucho y sea tos seca, se deben usar Antitusivos que eliminan la tos y Mucolíticos y Expectorantes que hacen que la mucosidad se elimine más fácilmente.  \n");
-									System.out.println("Si usted aparte de poseer este sintoma se siente cansado y con fiebre se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
+									
+									v.mensaje("\nEl tratamiento de la tos depende del tipo de esta y de su funcion, ya que puede ser sintoma de una enfermedad o un mecanismo de reaccion. \n");
+									v.mensaje("Si la tos no es tan grave se recomienda no beber ningun tipo de medicamento, en caso de que molesta mucho y sea tos seca, se deben usar Antitusivos que eliminan la tos y Mucolíticos y Expectorantes que hacen que la mucosidad se elimine más fácilmente.  \n");
+									v.mensaje("Si usted aparte de poseer este sintoma se siente cansado y con fiebre se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
 				   case 6:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("Las causas comunes del dolor de cabeza son: Inflamación u otros problemas de los vasos sanguíneos del cerebro y alrededor de este, como el accidente cerebrovascular. Infecciones, como la meningitis. Presión intracraneal demasiado alta o demasiado baja. Tumor cerebral. Lesión cerebral traumática.");
+									
+									v.mensaje("\nLas causas comunes del dolor de cabeza son: Inflamación u otros problemas de los vasos sanguíneos del cerebro y alrededor de este, como el accidente cerebrovascular. Infecciones, como la meningitis. Presión intracraneal demasiado alta o demasiado baja. Tumor cerebral. Lesión cerebral traumática.");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("Están disponibles una variedad de medicamentos para reducir el dolor de cabeza, tanto con o sin receta. \n");
-									System.out.println("Para aliviar el dolor puede tomar aspirinas, ibuprofeno o naproxeno. \n");
+									
+									v.mensaje("\nEstán disponibles una variedad de medicamentos para reducir el dolor de cabeza, tanto con o sin receta. \n");
+									v.mensaje("Para aliviar el dolor puede tomar aspirinas, ibuprofeno o naproxeno. \n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
 				   case 7:
 						try {
  
-							pregunta = Integer.parseInt(JOptionPane.showInputDialog("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n"));						
+							pregunta = v.datos("Escriba el numero de la opcion que usted desee \n 1. Ver Diagnostico \n 2. Ver Tratamientos \n");						
 			 
 							switch (pregunta) {
 								case 1:
-									System.out.println("");
-									System.out.println("Existe una gran variedad de causas para que tengas fiebre, algunas serian: Infecciones óseas, apendicitis, infecciones cutáneas o celulitis y meningitis. Infecciones respiratorias. Infecciones Urinarias.");
+									
+									v.mensaje("\nExiste una gran variedad de causas para que tengas fiebre, algunas serian: Infecciones óseas, apendicitis, infecciones cutáneas o celulitis y meningitis. Infecciones respiratorias. Infecciones Urinarias.");
 									break;
 								case 2:
-									System.out.println("");
-									System.out.println("En el caso de fiebre baja, no es muy recomendado tomar un tratamiento para bajar la temperatura coroporal. \n");
-									System.out.println("En caso de fiebre alta se recomienda toma paracetamol o ibuprofeno. \n");
-									System.out.println("Si usted aparte de poseer este sintoma se siente cansado y con tos se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
+									
+									v.mensaje("\nEn el caso de fiebre baja, no es muy recomendado tomar un tratamiento para bajar la temperatura coroporal. \n");
+									v.mensaje("En caso de fiebre alta se recomienda toma paracetamol o ibuprofeno. \n");
+									v.mensaje("Si usted aparte de poseer este sintoma se siente cansado y con tos se recomienda hacerse el examen del COVID-19 para tomar medidas. \n");
 									break;
 								default:
-									System.out.println("Solo números entre 1 y 2");
+									v.mensaje("Solo números entre 1 y 2");
 							}
 						}catch (Exception e) {
-							System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+							v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
 							sn.next();
 						}
 					   break;
@@ -191,11 +197,11 @@ public class AtencionMedica {
 					   salir=true;
 					   break;
 					default:
-					  System.out.println("Por favor ingrese solo un número entre 1 y 8");
+					  v.mensaje("Por favor ingrese solo un número entre 1 y 8");
 			   }
 			
 			}catch (Exception e) {
-                System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+                v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
                 sn.next();
             }
        }
