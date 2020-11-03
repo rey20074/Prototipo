@@ -137,7 +137,27 @@ public class driver {
             {
                 writer.writeNext(temporal);
             }
-            writer.close();*/
+            writer.close();
+            
+            otro tipo de idea
+            
+            //añade el nuevo usuario a la base de datos
+            String archCSV1 = "archivos/usuarios.csv"; //busca el archivo
+            CSVWriter writer = new CSVWriter(new FileWriter(archCSV1)); //abre el writer
+            ArrayList<String> temporal = new ArrayList<String>(); //donde estaran los usuarios y contrasenas
+
+            for(int w=0; w<usuarios.size(); w++)
+            {
+
+                temporal.add(usuarios.get(w)+","+contrasenas.get(w));
+            }
+
+            for(int w=0; w<usuarios.size(); w++)
+            {
+                writer.writeNext((String[])temporal.toArray());
+            }
+
+            writer.close(); */
 
         }
 
