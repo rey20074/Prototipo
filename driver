@@ -2,116 +2,144 @@
 Página principal para la aplicación de hospitales
 Andrea Lam, 20102
 Mariano Reyes. 20074
-Ultima Modificación: 
+Ultima Modificación:
 06/10/2020
 
 */
 
-import javax.swing.JOptionPane;
 import java.util.Scanner;
 import com.opencsv.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Collection;
+
+
+/*
+Página principal para la aplicación de hospitales
+Andrea Lam, 20102
+Mariano Reyes. 20074
+Ultima Modificación:
+06/10/2020
+
+*/
+
+import java.util.Scanner;
+import com.opencsv.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.*;    
-import java.awt.event.*;   
 
 
-public class Main {
+public class driver {
 
-    public static void main( String[] args) {
-       Scanner scan = new Scanner(System.in);
-       int contador=0;
-       boolean bandera=false,bandera2=false;
-       //verificar v = new verificar();
-       ArrayList<String> usuarios = new ArrayList<String>();
-       ArrayList<String> contrasenas = new ArrayList<String>();
+    public static void main( String[] args) throws IOException, InvalidFormatException {
 
-       vista v=new vista();
+        Scanner scan = new Scanner(System.in);
+        int contador=0;
+        boolean bandera=false,bandera2=false;
+        //verificar v = new verificar();
+        ArrayList<String> usuarios = new ArrayList<String>();
+        ArrayList<String> contrasenas = new ArrayList<String>();
 
-       v.bienvenida();
-       String correo = v.datos("Usuario");
-       System.out.println(correo);
-       String contra = v.datos("Contraseña");
-       System.out.println(contra);
+        vista v=new vista();
 
-       int opcion=0;
-       int opcionhosp=0;
+        v.bienvenida();
+        String correo = v.datos("Usuario");
+        System.out.println(correo);
+        String contra = v.datos("Contraseña");
+        System.out.println(contra);
 
-       //buscar el usuario en el csv
-       FileReader archCSV = null;
-       CSVReader csvReader = null;
+        int opcion=0;
+        int opcionhosp=0;
 
-       try {
-           //Leo el archivo con el separador estándar ","
-           archCSV = new FileReader("archivos/usuarios.csv");
-           csvReader = new CSVReader(archCSV);
-           String[] fila = null;
-           while((fila = csvReader.readNext()) != null) {
-               usuarios.add(fila[0]);
-               contrasenas.add(fila[1]);
-           }
-       }
-       catch(IOException e) {
-           System.out.println(e);
-       }
-       catch(Exception e) {
-           System.out.println(e);
-       }
+        //buscar el usuario en el csv
+        FileReader archCSV = null;
+        CSVReader csvReader = null;
 
-       finally {
-           try {
-               archCSV.close();
-               csvReader.close();
-           }
-           catch(IOException e) {
-               System.out.println(e);
-           }
-       }
-       //Guardados usarios y contraseñas
-
-       //verificar si existe el usuario
-       for(int i=0; i<usuarios.size();i++)
-       {
-           //System.out.println(usuarios.get(i));
-           //System.out.println(contrasenas.get(i));
-           if(usuarios.get(i).equals(correo) && contrasenas.get(i).equals(contra))
-           {
-               bandera=true;
-           }
-           //System.out.println(bandera);
-       }
-       if(bandera==true)//existe el usuario
-       {
-         v.mensaje("Usuario si existe");
-       }
-       if(bandera==false)// crear usuario
-       {
-           v.mensaje("Usuario no existente, procediendo a registrar\n");
-           String usuario = v.datos("Usuario con el que se desea ingresar: ");
-           //verifica si el usuario ingresado existe o no
-           for (int i = 0; i < usuarios.size(); i++) {
-               while (usuarios.get(i).equals(usuario)) {
-                   bandera2 = true; //ya existe
-                   v.mensaje("Usuario existente, porfavor ingrese otro correo");
-                   //JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
-                   usuario = v.datos("Correo con el que se desea ingresar: ");
-                   int a = 0;
-
-
-               }
-           }
-
-           String contrat = v.datos("Constraseña que desee: ");
-           usuarios.add(usuario);
-           contrasenas.add(contrat);
-           
+        try {
+            //Leo el archivo con el separador estándar ","
+            archCSV = new FileReader("archivos/usuarios.csv");
+            csvReader = new CSVReader(archCSV);
+            String[] fila = null;
+            while((fila = csvReader.readNext()) != null) {
+                usuarios.add(fila[0]);
+                contrasenas.add(fila[1]);
+            }
+        }
+        catch(IOException e) {
+            System.out.println(e);
+        }
+        catch(Exception e) {
+            System.out.println(e);
         }
 
-        
+        finally {
+            try {
+                archCSV.close();
+                csvReader.close();
+            }
+            catch(IOException e) {
+                System.out.println(e);
+            }
+        }
+        //Guardados usarios y contraseñas
+
+        //verificar si existe el usuario
+        for(int i=0; i<usuarios.size();i++)
+        {
+            //System.out.println(usuarios.get(i));
+            //System.out.println(contrasenas.get(i));
+            if(usuarios.get(i).equals(correo) && contrasenas.get(i).equals(contra))
+            {
+                bandera=true;
+            }
+            //System.out.println(bandera);
+        }
+        if(bandera==true)//existe el usuario
+        {
+            v.mensaje("Usuario si existe");
+        }
+        if(bandera==false)// crear usuario
+        {
+            v.mensaje("Usuario no existente, procediendo a registrar\n");
+            String usuario = v.datos("Usuario con el que se desea ingresar: ");
+            //verifica si el usuario ingresado existe o no
+            for (int i = 0; i < usuarios.size(); i++) {
+                while (usuarios.get(i).equals(usuario)) {
+                    bandera2 = true; //ya existe
+                    v.mensaje("Usuario existente, porfavor ingrese otro correo");
+                    //JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
+                    usuario = v.datos("Correo con el que se desea ingresar: ");
+                    int a = 0;
+
+
+                }
+            }
+
+            String contrat = v.datos("Constraseña que desee: ");
+            usuarios.add(usuario);
+            contrasenas.add(contrat);
+
+            /*String archCSV1 = "archivos/usuarios.csv";
+            CSVWriter writer = new CSVWriter(new FileWriter(archCSV1));
+            ArrayList<String> temporal = new ArrayList<String>();
+            for(int w=0; w<usuarios.size(); w++)
+            {
+
+               temporal.add(usuarios.get(w)+","+contrasenas.get(w));
+            }
+
+            for(int w=0; w<usuarios.size(); w++)
+            {
+                writer.writeNext(temporal);
+            }
+            writer.close();*/
+
+        }
 
 
         while(opcion!=4){
@@ -135,10 +163,10 @@ public class Main {
                         hosp.cola();
                     }
                     else if(opcionhosp==3){
-                      v.mensaje("Eligio regresar...");
+                        v.mensaje("Eligio regresar...");
                     }
                     else{
-                      v.mensaje("Porfavor ingrese solo una opcion del 1 al 3");
+                        v.mensaje("Porfavor ingrese solo una opcion del 1 al 3");
                     }
                 }
 
@@ -147,27 +175,48 @@ public class Main {
             }
             else if(opcion==2)//Atención Medica
             {
-              //Instanciamos la clase Atencion Medica
-              AtencionMedica at = new AtencionMedica();
-              //Mandamos a llamar a ala clase Atención Medica
-              at.Imprimir();
+                //Instanciamos la clase Atencion Medica
+                AtencionMedica at = new AtencionMedica();
+                //Mandamos a llamar a ala clase Atención Medica
+                at.Imprimir();
 
             }else if(opcion==3)//Materiales
             {
+                ArrayList<Item> item = new ArrayList<Item>();
+                int opcionm = 1;
+                int contadorm = 1;
 
-              materiales m = new materiales();
+                var scanm = new Scanner(System.in);
 
-              m.crearExcel(item);
+                while (opcionm == 1)
+                {
+                    Item detalle = new Item();
+                    ArrayList<Item> listado = new ArrayList<Item>();
+                    detalle.setNombre(v.datos("Ingres el nombre del producto"));
+                    detalle.setCantidadActual(v.numero("Ingres la cantidad actual"));
+                    detalle.setCantidadFalta(v.numero("Ingres la cantidad que falta"));
+
+                    v.mensaje("Desea seguir agregando productos");
+                    opcionm = v.opciones("Ingrese 1 si desea continuar, 2 para terminar de escribir",2);
+
+                    listado.add(detalle);
+                    item.addAll(0, listado);
+                    contadorm++;
+                }
+
+                materiales m = new materiales();
+
+                m.crearExcel(item);
             }
             else if(opcion==4)//Salir
             {
-              v.mensaje("Pase buen día.");
+                v.mensaje("Pase buen día.");
             }
             else
             {
-              v.mensaje("Porfavor ingrese solo una opcion del 1 al 4");
+                v.mensaje("Porfavor ingrese solo una opcion del 1 al 4");
             }
-      }
+        }
 
-  }
+    }
 }
