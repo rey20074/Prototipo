@@ -51,12 +51,13 @@ public class materiales {
         } else if (file.exists()) {
             //si ya existe se indican todas las variables de donde se sacaran
             boolean igual = false;
+            //aqui se le explica al prgrama que guarde el excel en el escritorio del usuario con el nombre de materiales
             FileInputStream inputStream = new FileInputStream(new File(desktopPath + "\\Materiales.xls"));
             Workbook workbook = WorkbookFactory.create(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
             String cellValue = sheet.getRow(0).getCell(0).getStringCellValue();
-
             int rowCount = sheet.getLastRowNum();
+            //Se declara el object book data para añadir la información por columnas
             Object[][] bookData = {};
             FileOutputStream outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
 
@@ -71,7 +72,7 @@ public class materiales {
                         igual = false;
                     }
                 }
-
+                //aqui se implementan los cambios al object
                 bookData = new Object[][] {
                         { item.get(i).getNombre(), item.get(i).getCantidadActual(), item.get(i).getCantidadFalta() }, };
                 if (!igual) {
