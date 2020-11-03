@@ -1,14 +1,41 @@
-try {
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/*
+Clase Materiales
+Jessica Ortiz, 20192
+Esteban Aldana, 20591
+Ultima Modificación:
+11/9/2020
+*/
+
+public class materiales {
+
+    public void crearExcel(ArrayList<Item> item) throws IOException, InvalidFormatException {
+
+         try {
 
         String desktopPath = System.getProperty("user.home") + "/Desktop";
         File file = new File(desktopPath + "\\Materiales.xls");
         if (!file.exists()) {
+            //si no existe el archivo crea todo desde cero
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = workbook.createSheet();
             sheet.createRow(0);
             sheet.getRow(0).createCell(0).setCellValue("Material");
             sheet.getRow(0).createCell(1).setCellValue("Cantidad Actual");
             sheet.getRow(0).createCell(2).setCellValue("Cantidad Que Falta");
+            //aqui se escribio el encabezado
             for (int i = 0; i < item.size(); i++) {
                 int temp = i + 1;
                 sheet.createRow(temp);
@@ -16,21 +43,23 @@ try {
                 sheet.getRow(temp).createCell(1).setCellValue(item.get(i).getCantidadActual());
                 sheet.getRow(temp).createCell(2).setCellValue(item.get(i).getCantidadFalta());
             }
+            //aqui se añadio los materiales
             workbook.write(file);
             workbook.close();
             System.out.println("Se ha creado el archivo con la información ingresada");
         } else if (file.exists()) {
+            //si ya existe se indican todas las variables de donde se sacaran
             boolean igual = false;
             FileInputStream inputStream = new FileInputStream(new File(desktopPath + "\\Materiales.xls"));
             Workbook workbook = WorkbookFactory.create(inputStream);
             Sheet sheet = workbook.getSheetAt(0);
             String cellValue = sheet.getRow(0).getCell(0).getStringCellValue();
-            
+
             int rowCount = sheet.getLastRowNum();
             Object[][] bookData = {};
             FileOutputStream outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
-           
-        for (int i = 0; i < item.size(); i++) {
+
+            for (int i = 0; i < item.size(); i++) {
 
                 for (int j = 0; j <= rowCount; j++) {
                     cellValue = sheet.getRow(j).getCell(0).getStringCellValue();
@@ -45,6 +74,7 @@ try {
                 bookData = new Object[][] {
                         { item.get(i).getNombre(), item.get(i).getCantidadActual(), item.get(i).getCantidadFalta() }, };
                 if (!igual) {
+                    //aqui verifico si ya existia ese material y si no existe lo añadira al excel
                     for (Object[] aBook : bookData) {
                         Row row = sheet.createRow(++rowCount);
 
@@ -73,6 +103,7 @@ try {
                      * workbook.close(); outputStream.close();
                      */
                 } else {
+                    //si si existia el material no lo deja escribir
                     //inputStream.close();
                     System.out.println("Lo sentimos pero ese material ya fue añadido al documento");
                     //outputStream.close();
@@ -87,9 +118,12 @@ try {
 
             workbook.close();
             outputStream.close();
-}
-}
+
+        }
+        }
+
           catch (Exception e) {
+             
              System.out.println("Porfavor ingrese la información que le piden, vuelva a intentar");
          }
 
