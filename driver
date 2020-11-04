@@ -3,7 +3,7 @@ Página principal para la aplicación de hospitales
 Andrea Lam, 20102
 Mariano Reyes. 20074
 Ultima Modificación:
-06/10/2020
+4/11/2020
 
 */
 
@@ -14,25 +14,8 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import java.io.*;
 import java.io.IOException;
 import java.util.ArrayList;
-
-
-/*
-Página principal para la aplicación de hospitales
-Andrea Lam, 20102
-Mariano Reyes. 20074
-Ultima Modificación:
-06/10/2020
-
-*/
-
-import java.util.Scanner;
-import com.opencsv.*;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-
-import java.io.*;
-import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class driver {
 
@@ -40,127 +23,18 @@ public class driver {
 
         Scanner scan = new Scanner(System.in);
         int contador=0;
-        boolean bandera=false,bandera2=false;
-        //verificar v = new verificar();
-        ArrayList<String> usuarios = new ArrayList<String>();
-        ArrayList<String> contrasenas = new ArrayList<String>();
+
 
         vista v=new vista();
-
-        v.bienvenida();
-        String correo = v.datos("Usuario");
-        System.out.println(correo);
-        String contra = v.datos("Contraseña");
-        System.out.println(contra);
+        Usuarios u = new Usuarios();
 
         int opcion=0;
         int opcionhosp=0;
 
-        //buscar el usuario en el csv
-        FileReader archCSV = null;
-        CSVReader csvReader = null;
+        u.leerArchivo();
+        u.verificar();
 
-        try {
-            //Leo el archivo con el separador estándar ","
-            archCSV = new FileReader("archivos/usuarios.csv");
-            csvReader = new CSVReader(archCSV);
-            String[] fila = null;
-            while((fila = csvReader.readNext()) != null) {
-                usuarios.add(fila[0]);
-                contrasenas.add(fila[1]);
-            }
-        }
-        catch(IOException e) {
-            System.out.println(e);
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-
-        finally {
-            try {
-                archCSV.close();
-                csvReader.close();
-            }
-            catch(IOException e) {
-                System.out.println(e);
-            }
-        }
-        //Guardados usarios y contraseñas
-
-        //verificar si existe el usuario
-        for(int i=0; i<usuarios.size();i++)
-        {
-            //System.out.println(usuarios.get(i));
-            //System.out.println(contrasenas.get(i));
-            if(usuarios.get(i).equals(correo) && contrasenas.get(i).equals(contra))
-            {
-                bandera=true;
-            }
-            //System.out.println(bandera);
-        }
-        if(bandera==true)//existe el usuario
-        {
-            v.mensaje("Usuario si existe");
-        }
-        if(bandera==false)// crear usuario
-        {
-            v.mensaje("Usuario no existente, procediendo a registrar\n");
-            String usuario = v.datos("Usuario con el que se desea ingresar: ");
-            //verifica si el usuario ingresado existe o no
-            for (int i = 0; i < usuarios.size(); i++) {
-                while (usuarios.get(i).equals(usuario)) {
-                    bandera2 = true; //ya existe
-                    v.mensaje("Usuario existente, porfavor ingrese otro correo");
-                    //JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
-                    usuario = v.datos("Correo con el que se desea ingresar: ");
-                    int a = 0;
-
-
-                }
-            }
-
-            String contrat = v.datos("Constraseña que desee: ");
-            usuarios.add(usuario);
-            contrasenas.add(contrat);
-
-            /*String archCSV1 = "archivos/usuarios.csv";
-            CSVWriter writer = new CSVWriter(new FileWriter(archCSV1));
-            ArrayList<String> temporal = new ArrayList<String>();
-            for(int w=0; w<usuarios.size(); w++)
-            {
-
-               temporal.add(usuarios.get(w)+","+contrasenas.get(w));
-            }
-
-            for(int w=0; w<usuarios.size(); w++)
-            {
-                writer.writeNext(temporal);
-            }
-            writer.close();
-            
-            otro tipo de idea
-            
-            //añade el nuevo usuario a la base de datos
-            String archCSV1 = "archivos/usuarios.csv"; //busca el archivo
-            CSVWriter writer = new CSVWriter(new FileWriter(archCSV1)); //abre el writer
-            ArrayList<String> temporal = new ArrayList<String>(); //donde estaran los usuarios y contrasenas
-
-            for(int w=0; w<usuarios.size(); w++)
-            {
-
-                temporal.add(usuarios.get(w)+","+contrasenas.get(w));
-            }
-
-            for(int w=0; w<usuarios.size(); w++)
-            {
-                writer.writeNext((String[])temporal.toArray());
-            }
-
-            writer.close(); */
-
-        }
-
+        //Menu
 
         while(opcion!=4){
             opcion = v.opciones("¿A donde desea ingresar?\n1. Hospitales \n2. Atención Medica \n3. Materiales\n4. Salir",4);
