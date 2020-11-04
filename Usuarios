@@ -1,5 +1,158 @@
-*/
-Clase usuarios
-
-
 /*
+Página principal para los usuarios
+Andrea Lam, 20102
+Ultima Modificación:
+12/11/2020
+
+*/
+
+import java.util.Scanner;
+import com.opencsv.*;
+//import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import java.io.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Arrays;
+
+
+public class Usuarios extends Lectura {
+
+    //Instancia de variables que se necesitan
+
+    Scanner scan = new Scanner(System.in);
+    vista v=new vista();
+    int contador=0;
+    String correo;
+    String contra;
+    boolean bandera=false,bandera2=false;
+    //verificar v = new verificar();
+    ArrayList<String> usuarios = new ArrayList<String>();
+    ArrayList<String> contrasenas = new ArrayList<String>();
+    public static final String SEPARATOR=",";
+    public static final char QUOTE='"';
+    String [] fields;
+
+    public Usuarios()//constructor
+    {
+        v.bienvenida();
+        correo = v.datos("Usuario");
+        System.out.println(correo);
+        contra = v.datos("Contraseña");
+        System.out.println(contra);
+    }
+
+    public void leerArchivo()
+    {
+        //buscar el usuario en el csv
+        CSVReader reader = null;
+        BufferedReader br = null;
+
+        try {
+
+            br =new BufferedReader(new FileReader("archivos/usuarios.csv"));
+            String line = br.readLine();
+            while (null!=line) {
+                fields = line.split(SEPARATOR);
+
+                fields = remover(fields);
+                //System.out.println(Arrays.toString(fields));
+
+                line = br.readLine();
+            }
+
+        } catch (Exception e) {
+         v.mensaje("Error en lectura");
+        } finally {
+            if (null!=br) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private String[] remover(String[] fields) { //funcion que remueve los ""
+        String result[] = new String[fields.length];
+        for (int i=0;i<result.length;i++){
+            result[i] = fields[i].replaceAll("^"+QUOTE, "").replaceAll(QUOTE+"$", "");
+        }
+        return result;
+    }
+
+    public void verificar() throws IOException//verifica si el usuario existe y si no lo agrega en la base de datos
+    {
+        //verificar si existe el usuario
+        for(int i=0; i< fields.length;i++)
+        {
+            //System.out.println(usuarios.get(i));
+            //System.out.println(contrasenas.get(i));
+            if(fields[i].equals(correo))
+            {
+                bandera=true;
+            }
+            //System.out.println(bandera);
+        }
+        if(bandera==true)//existe el usuario
+        {
+            v.mensaje("Usuario si existe");
+        }
+        if(bandera==false)// crear usuario
+        {
+            v.mensaje("Usuario no existente, procediendo a registrar\n");
+            String usuario = v.datos("Usuario con el que se desea ingresar: ");
+            //verifica si el usuario ingresado existe o no
+            for (int i = 0; i < fields.length; i++) {
+                while (fields[i].equals(usuario)) {
+                    bandera2 = true; //ya existe
+                    v.mensaje("Usuario existente, porfavor ingrese otro correo");
+                    //JOptionPane.showMessageDialog(null, "Usuario existente, porfavor ingrese otro correo");
+                    usuario = v.datos("Correo con el que se desea ingresar: ");
+                    int a = 0;
+
+
+                }
+            }
+
+            String contrat = v.datos("Constraseña que desee: ");
+            for(int i=0;i< fields.length;i++)
+            {
+                usuarios.add(fields[i]);
+                contrasenas.add(fields[i]);
+            }
+            usuarios.add(usuario);
+            contrasenas.add(contrat);
+
+            //añade el nuevo usuario a la base de datos
+            String archCSV1 = "archivos/usuarios.csv"; //busca el archivo
+            CSVWriter writer = new CSVWriter(new FileWriter(archCSV1)); //abre el writer
+            ArrayList<String> temporal = new ArrayList<String>(); //donde estaran los usuarios y contrasenas
+            String[] temp = new String[usuarios.size()];
+            //usuarios.size()
+
+            for(int w=0; w<usuarios.size(); w++)
+            {
+                temp[w]= (usuarios.get(w)+","+contrasenas.get(w));
+                //temporal.add(usuarios.get(w)+","+contrasenas.get(w));
+            }
+
+            //for(int w=0; w<usuarios.size(); w++)
+            //{
+            writer.writeNext(temp);
+            //}
+            //(String[])temporal.toArray()
+
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+}
