@@ -10,6 +10,6 @@ Ultima Modificación:
 
 public abstract class Lectura {
 
-    public abstract void leer();
+    public abstract void leerArchivo();
 
 }
