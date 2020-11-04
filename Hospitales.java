@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Collection;
 
-public class Hospitales{
-  Lectura leer=new Lectura();
+public class Hospitales extendes Lectura{
   
   ArrayList<String> Hospital = new ArrayList<String>();
   ArrayList<String> Medicos = new ArrayList<String>();
