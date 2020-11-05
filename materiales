@@ -75,7 +75,7 @@ public class materiales {
                 //aqui se implementan los cambios al object
                 bookData = new Object[][] {
                         { item.get(i).getNombre(), item.get(i).getCantidadActual(), item.get(i).getCantidadFalta() }, };
-                if (!igual) {
+               if (!igual) {
                     //aqui verifico si ya existia ese material y si no existe lo añadira al excel
                     for (Object[] aBook : bookData) {
                         Row row = sheet.createRow(++rowCount);
@@ -83,7 +83,6 @@ public class materiales {
                         int columnCount = 0;
 
                         Cell cell = row.createCell(columnCount);
-                        // cell.setCellValue(rowCount);
 
                         for (Object field : aBook) {
                             cell = row.createCell(++columnCount - 1);
@@ -95,38 +94,27 @@ public class materiales {
                         }
 
                     }
-                    System.out.println("Se ha añadido la información al archivo existente");
-                    /*
-                     * inputStream.close();
-                     *
-                     * //outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
-                     * workbook.write(outputStream);
-                     * System.out.println("Se ha añadido la información al archivo existente");
-                     * workbook.close(); outputStream.close();
-                     */
+                    v.mensaje("Se ha añadido la información al archivo existente");
+
                 } else {
-                    //si si existia el material no lo deja escribir
-                    //inputStream.close();
-                    System.out.println("Lo sentimos pero ese material ya fue añadido al documento");
-                    //outputStream.close();
+
+                    v.mensaje("Lo sentimos pero ese material ya fue añadido al documento");
+
                 }
 
             }
 
             inputStream.close();
-
-            // outputStream = new FileOutputStream(desktopPath + "\\Materiales.xls");
             workbook.write(outputStream);
 
             workbook.close();
             outputStream.close();
-
-        }
         }
 
+        }
           catch (Exception e) {
-             
-             System.out.println("Porfavor ingrese la información que le piden, vuelva a intentar");
+
+             v.mensaje("Porfavor ingrese la información que le piden, vuelva a intentar");
          }
 
 
