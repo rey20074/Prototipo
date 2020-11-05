@@ -46,7 +46,7 @@ public class driver {
                 hosp.leerArchivo();
                 //la conversion crea arraylists Ints de las Strings que son de numeros
                 hosp.conversionInt();
-
+                opcionhosp=0;
                 while(opcionhosp != 3){
                     opcionhosp =v.opciones("¿A donde desea ingresar?\n1. Mostrar toda la informacion necesaria \n2. Recomendar Hospital \n3. Regresar",3);
                     if(opcionhosp==1){
