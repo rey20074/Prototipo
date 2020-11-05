@@ -1,7 +1,7 @@
 /*
 Clase Atención Médica
 Ultima Modificación:
-06/10/2020
+04/11/2020
 */
 
 
@@ -27,7 +27,7 @@ public class AtencionMedica {
 
 			try{
 
-				opcions = v.opciones("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Salir de la Atencion Medica",8);
+				opcions = v.opciones("Escriba el numero del sintoma que usted presenta \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre \n 8. Referencias \n 9. Salir de la Atencion Medica");
 
 
 				switch(opcions){
@@ -196,8 +196,11 @@ public class AtencionMedica {
 					case 8:
 						salir=true;
 						break;
+					case 9:
+						v.mensaje("Toda la información ha sido obtenida de la pagina Mayo Clinic: ");
+					   	v.mensaje("https://www.mayoclinic.org/es-es");
 					default:
-						v.mensaje("Por favor ingrese solo un número entre 1 y 8");
+						v.mensaje("Por favor ingrese solo un número entre 1 y 9");
 				}
 
 			}catch (Exception e) {
