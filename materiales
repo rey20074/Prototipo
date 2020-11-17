@@ -34,8 +34,8 @@ public class materiales {
             HSSFSheet sheet = workbook.createSheet();
             sheet.createRow(0);
             sheet.getRow(0).createCell(0).setCellValue("Material");
-            sheet.getRow(0).createCell(1).setCellValue("Cantidad Actual");
-            sheet.getRow(0).createCell(2).setCellValue("Cantidad Que Falta");
+            sheet.getRow(0).createCell(1).setCellValue("Existencias");
+            sheet.getRow(0).createCell(2).setCellValue("Material faltante");
             //aqui se escribio el encabezado
             for (int i = 0; i < item.size(); i++) {
                 int temp = i + 1;
