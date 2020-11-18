@@ -87,8 +87,9 @@ public class driver {
                 {
                     Item detalle = new Item();
                     ArrayList<Item> listado = new ArrayList<Item>();
+                    v.mensaje("Usted esta ingresando como empleado para modificar la base de datos de excel");
                     detalle.setNombre(v.datos("Ingres el nombre del producto"));
-                    detalle.setCantidadActual(v.numero("Ingres la cantidad actual"));
+                    detalle.setCantidadActual(v.numero("Ingres cantidad de existencias"));
                     detalle.setCantidadFalta(v.numero("Ingres la cantidad que falta"));
 
                     v.mensaje("Desea seguir agregando productos");
