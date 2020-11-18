@@ -6,20 +6,18 @@ Ultima Modificación:
 17/11/2020
 */
 
-
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.AbstractCollection;
 
-public class atencion {
+public class AtencionMedica {
 
   public void Imprimir() {
 
     Scanner sn = new Scanner(System.in);
+    Vista v = new Vista ();
 		
-    int cantidad = Integer.parseInt(
-        JOptionPane.showInputDialog(null, "Escriba la cantidad de sintomas que presenta de este listado: \n - Dolor de garganta \n - Dolor de oido \n - Dolor en las vias urinarias \n - Goteo nasal y congestion \n - Tos \n - Dolor de cabeza \n - Fiebre"));
+    int cantidad = v.opciones("Escriba la cantidad de sintomas que presenta de este listado: \n - Dolor de garganta \n - Dolor de oido \n - Dolor en las vias urinarias \n - Goteo nasal y congestion \n - Tos \n - Dolor de cabeza \n - Fiebre",7);
 
     ArrayList<String> nombreLista = new ArrayList<String>();
     String Sintoma_1 = ("Entre las enfermedades virales que causan dolor de garganta se incluyen las siguientes:\n Resfrio comun, Gripe (influenza), Mononucleosis, Sarampion, Varicela, Crup: una enfermedad comun de la ninez caracterizada por una tos aspera y seca. \n El dolor de garganta causado por una infeccion viral generalmente dura de cinco a siete dias y no requiere tratamiento medico. Pero si desea aliviar el dolor puede tomar paracetamol u otros analgesicos suaves. \n");
@@ -29,16 +27,12 @@ public class atencion {
     String Sintoma_5 = ("Las causas comunes de la tos son: Alergias que involucran la nariz y los senos paranasales, Asma y EPOC (enfisema o bronquitis cronica), el resfriado comun y la gripe, infecciones pulmonares como neumonia o bronquitis aguda, sinusitis con goteo retronasal. \n El tratamiento de la tos depende del tipo de esta y de su funcion, ya que puede ser sintoma de una enfermedad o un mecanismo de reaccion. \n Si la tos no es tan grave se recomienda no beber ningun tipo de medicamento, en caso de que molesta mucho y sea tos seca, se deben usar Antitusivos que eliminan la tos y Mucoliticos y Expectorantes que hacen que la mucosidad se elimine mas facilmente.\n Si usted aparte de poseer este sintoma se siente cansado y con fiebre se recomienda hacerse el examen del COVID-19 para tomar medidas.\n");
     String Sintoma_6 = (" Las causas comunes del dolor de cabeza son: Inflamacion u otros problemas de los vasos sanguineos del cerebro y alrededor de este, como el accidente cerebrovascular.\n Infecciones, como la meningitis.\n Presion intracraneal demasiado alta o demasiado baja. \n Tumor cerebral.\n Lesion cerebral traumatica.\n Estan disponibles una variedad de medicamentos para reducir el dolor de cabeza, tanto con o sin receta.\n Para aliviar el dolor puede tomar aspirinas, ibuprofeno o naproxeno. \n");
     String Sintoma_7 = ("Existe una gran variedad de causas para que tengas fiebre, algunas serian: Infecciones oseas, apendicitis, infecciones cutaneas o celulitis y meningitis. \n Infecciones respiratorias.\n Infecciones Urinarias.\n En el caso de fiebre baja, no es muy recomendado tomar un tratamiento para bajar la temperatura coroporal. \n Si usted aparte de poseer este sintoma se siente cansado y con tos se recomienda hacerse el examen del COVID-19 para tomar medidas.\n");
-    
-
-
 
     for (int i = 0; i < cantidad; i++) {
 
       try {
 
-        int elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-            "Escriba el numero de la opcion del sintoma que  usted presenta () \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre"));
+        int elemento = v.opciones("Escriba el numero de la opcion del sintoma que  usted presenta () \n 1. Dolor de garganta \n 2. Dolor de oido \n 3. Dolor en las vias urinarias \n 4. Goteo nasal y congestion \n 5. Tos \n 6. Dolor de cabeza \n 7. Fiebre",7);
         
 
         if (elemento == 1) {
@@ -56,18 +50,19 @@ public class atencion {
         } else if (elemento == 7) {
           nombreLista.add(Sintoma_7);
         } else{
-          System.out.println("Debes escribir un numero del 1 al 7");
           i--;
         }
 
       } catch (Exception e) {
-        System.out.println("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
+         v.mensaje("Debes insertar un numero, escriba cualquier letra o numero para poder volver a intentarlo");
         sn.next();
       }
 
     }
-    
-    JOptionPane.showMessageDialog(null,nombreLista);
+
+    for (int i = 0; i <= nombreLista.size() - 1; i++){
+      v.mensaje(nombreLista.get(i));
+    }
 
   }
 
