@@ -2,7 +2,7 @@
 Página principal para los usuarios
 Andrea Lam, 20102
 Ultima Modificación:
-12/11/2020
+17/11/2020
 
 */
 
@@ -40,9 +40,6 @@ public class Usuarios extends Lectura {
     {
         v.bienvenida();
         correo = v.datos("Usuario");
-        System.out.println(correo);
-        contra = v.datos("Contraseña");
-        System.out.println(contra);
     }
 
     public void leerArchivo()
