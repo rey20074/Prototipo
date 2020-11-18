@@ -3,7 +3,7 @@ Clase Atención Médica
 Kenneth Gálvez, 20079
 Natanael Girón, 20029
 Ultima Modificación:
-17/11/2020
+18/11/2020
 */
 
 import java.util.Scanner;
@@ -16,9 +16,10 @@ public class AtencionMedica {
 
     Scanner sn = new Scanner(System.in);
     Vista v = new Vista ();
-		
+    v.mensaje("------------Ha seleccionado la opcion de Atencion Medica ------- ");
     int cantidad = v.opciones("Escriba la cantidad de sintomas que presenta de este listado: \n - Dolor de garganta \n - Dolor de oido \n - Dolor en las vias urinarias \n - Goteo nasal y congestion \n - Tos \n - Dolor de cabeza \n - Fiebre",7);
 
+    //Lista con la información de cada sintoma
     ArrayList<String> nombreLista = new ArrayList<String>();
     String Sintoma_1 = ("Entre las enfermedades virales que causan dolor de garganta se incluyen las siguientes:\n Resfrio comun, Gripe (influenza), Mononucleosis, Sarampion, Varicela, Crup: una enfermedad comun de la ninez caracterizada por una tos aspera y seca. \n El dolor de garganta causado por una infeccion viral generalmente dura de cinco a siete dias y no requiere tratamiento medico. Pero si desea aliviar el dolor puede tomar paracetamol u otros analgesicos suaves. \n");
     String Sintoma_2 = (" Las causas del dolor de oido pueden abarcar: Artritis de la mandibula, Infeccion aguda del oido, Infeccion cronica del oido, Lesion en el oido por cambios de presion. \n Los sintomas de las infecciones del oido generalmente mejoran durante los primeros dos dias y la mayoria de las infecciones desaparecen solas en una o dos semanas sin tratamiento alguno. \n Si desea aliviar el dolor se recomienda el uso de paracetamol de venta libre o ibuprofeno.\n Si el dolor persiste luego de dos semanas se le recomienda visitar un medico. \n");
@@ -28,6 +29,7 @@ public class AtencionMedica {
     String Sintoma_6 = (" Las causas comunes del dolor de cabeza son: Inflamacion u otros problemas de los vasos sanguineos del cerebro y alrededor de este, como el accidente cerebrovascular.\n Infecciones, como la meningitis.\n Presion intracraneal demasiado alta o demasiado baja. \n Tumor cerebral.\n Lesion cerebral traumatica.\n Estan disponibles una variedad de medicamentos para reducir el dolor de cabeza, tanto con o sin receta.\n Para aliviar el dolor puede tomar aspirinas, ibuprofeno o naproxeno. \n");
     String Sintoma_7 = ("Existe una gran variedad de causas para que tengas fiebre, algunas serian: Infecciones oseas, apendicitis, infecciones cutaneas o celulitis y meningitis. \n Infecciones respiratorias.\n Infecciones Urinarias.\n En el caso de fiebre baja, no es muy recomendado tomar un tratamiento para bajar la temperatura coroporal. \n Si usted aparte de poseer este sintoma se siente cansado y con tos se recomienda hacerse el examen del COVID-19 para tomar medidas.\n");
 
+    //Dependiendo de la cantidad que escogio el usuario se le preguntara cuales son
     for (int i = 0; i < cantidad; i++) {
 
       try {
@@ -59,7 +61,7 @@ public class AtencionMedica {
       }
 
     }
-
+    //Mostrar todos los elementos de la lista
     for (int i = 0; i <= nombreLista.size() - 1; i++){
       v.mensaje(nombreLista.get(i));
     }
